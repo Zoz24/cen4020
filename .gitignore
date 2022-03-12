@@ -1,0 +1,5 @@
+# Ignoring these files
+/server/node_modules
+/server/db.js
+/server/package-lock.json
+/server/package.json
