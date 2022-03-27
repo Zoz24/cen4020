@@ -3,3 +3,6 @@
 /server/db.js
 /server/package-lock.json
 /server/package.json
+/client/my-app/package-lock.json
+/client/my-app/package.json
+/client/my-app/node_modules
