@@ -45,3 +45,30 @@ app.post("/register", async (req, res) => {
       console.error(err.message);
     }
   });
+
+app.put("/setFavoritePlayer", async (req, res) => {
+  try{
+    const {username, favoritePlayer} = req.body
+    const setFavoritePlayer = await pool.query(
+      "UPDATE users SET favoritePlayer = $1 WHERE username = $2",
+      [favoritePlayer, username]
+    )
+    res.send("updated favorite player")
+  }
+  catch(err){
+    console.error(err.message)
+  }
+})
+app.put("/setFavoriteTeam", async (req, res) => {
+  try{
+    const {username, favoriteTeam} = req.body
+    const setFavoriteTeam = await pool.query(
+      "UPDATE users SET favoriteTeam = $1 WHERE username = $2",
+      [favoriteTeam, username]
+    )
+    res.send("updated favorite team")
+  }
+  catch(err){
+    console.error(err.message)
+  }
+})
