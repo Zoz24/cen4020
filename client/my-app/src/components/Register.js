@@ -1,11 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Axios from 'axios'
+import Avatar from '@mui/material/Avatar';
 import { useNavigate } from "react-router";
 import { Button, Box, TextField, Grid, Container} from '@mui/material'
+import CssBaseline from '@mui/material/CssBaseline';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Link from '@mui/material/Link';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 import format from 'date-fns/format'
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme()
 
 const Register = () => {
     const [username, setUsername] = useState('');
@@ -15,10 +25,10 @@ const Register = () => {
     const [DOB, setDOB] = useState(null);
     const [favoritePlayer, setFavoritePlayer] = useState('')
     const [favoriteTeam, setFavoriteTeam] = useState('')
-    const [errorMsg, setErrorMsg] = useState('');
+    const [errorMsg, setErrorMsg] = useState('')
 
     let navigate = useNavigate();
-
+    
     // do this after clicking the register button
     const registerUser = async e => {
         e.preventDefault();
@@ -44,70 +54,74 @@ const Register = () => {
                     navigate("/");
                 }                                      
             })
-            }
-        return (
-            <Container
-                maxWidth="sm"               
-            >
-                <Box
-                    sx={{
+        }
+            return (
+                <ThemeProvider theme={theme}>
+                  <Container component="main" maxWidth="xs">
+                    <CssBaseline />
+                    <Box
+                      sx={{
                         marginTop: 8,
                         display: 'flex',
+                        flexDirection: 'column',
                         alignItems: 'center',
-                        justifyContent: "center",                       
-                    }}
-                    component="form"
-                    noValidate onSubmit={registerUser}
-                >
-                    <Grid container spacing={2}>
-                        <Grid item xs={4} md={6} lg={6}>
+                      }}
+                    >
+                      <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                        <LockOutlinedIcon />
+                      </Avatar>
+                      <Typography component="h1" variant="h5">
+                        Register
+                      </Typography>
+                      <Box component="form" noValidate onSubmit={registerUser} sx={{ mt: 3 }}>
+                        <Grid container spacing={2}>
+                          <Grid item xs={12} sm={6}>
                             <TextField
-                                autoComplete="given-name"
-                                name="firstName"
-                                required
-                                fullWidth
-                                id="firstName"
-                                label="First Name"
-                                autoFocus
-                                onChange={e => setfname(e.target.value)}
+                              autoComplete="given-name"
+                              name="firstName"
+                              required
+                              fullWidth
+                              id="firstName"
+                              label="First Name"
+                              onChange={(e) => setfname(e.target.value)}
+                              autoFocus
                             />
-                        </Grid>
-                        <Grid item xs={4} md={6} lg={6}>
+                          </Grid>
+                          <Grid item xs={12} sm={6}>
                             <TextField
-                                required
-                                fullWidth
-                                id="lastName"
-                                label="Last Name"
-                                name="lastName"
-                                autoComplete="lastName"
-                                onChange={e => setlname(e.target.value)}
+                              required
+                              fullWidth
+                              id="lastName"
+                              label="Last Name"
+                              name="lastName"
+                              onChange={(e) => setlname(e.target.value)}
+                              autoComplete="family-name"
                             />
-                        </Grid>
-                        <Grid item xs={4} md={12} lg={12}>
-                            <small id="errorMsg" class="text-danger">{errorMsg}</small>
+                          </Grid>
+                          <Grid item xs={12}>
                             <TextField
-                                required
-                                fullWidth
-                                id="username"
-                                label="Username"
-                                name="username"
-                                autoComplete="username"
-                                onChange={e => setUsername(e.target.value)}
+                              required
+                              fullWidth
+                              id="username"
+                              label="Username"
+                              name="username"
+                              onChange={(e) => setUsername(e.target.value)}
+                              autoComplete="username"
                             />
-                        </Grid>
-                        <Grid item xs={4} md={12} lg={12}>
+                          </Grid>
+                          <Grid item xs={12}>
                             <TextField
-                                required
-                                fullWidth
-                                name="password"
-                                label="Password"
-                                type="password"
-                                id="password"
-                                autoComplete="new-password"
-                                onChange={e => setPassword(e.target.value)}
+                              required
+                              fullWidth
+                              name="password"
+                              label="Password"
+                              type="password"
+                              id="password"
+                              onChange={(e) => setPassword(e.target.value)}
+                              autoComplete="new-password"
                             />
-                        </Grid>
-                        <Grid item xs={4} md={6} lg={6} >
+                          </Grid>
+                          <Grid item xs={12} md = {12}>
                             <LocalizationProvider dateAdapter={AdapterDateFns}>
                                 <DesktopDatePicker
                                     label="DOB"
@@ -118,18 +132,20 @@ const Register = () => {
                                     renderInput={(params) => <TextField {...params} />}
                                 />
                             </LocalizationProvider>
+                          </Grid>
                         </Grid>
                         <Button
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            sx={{ mt: 3, mb: 2, marginX: 5 }}
+                          type="submit"
+                          fullWidth
+                          variant="contained"
+                          sx={{ mt: 3, mb: 2 }}
                         >
-                            Register
+                          Register
                         </Button>
-                    </Grid>
-                </Box>
-            </Container >
-        )
+                      </Box>
+                    </Box>
+                  </Container>
+                </ThemeProvider>
+              );
     }
     export default Register;

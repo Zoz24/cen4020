@@ -13,13 +13,15 @@ function App()
 {
   const [userInfo, setUserInfo] = useState({
     isLoggedIn: false,
-    userName: null,
+    username: null
   })
   return (
     <>
     <Router>
       <Routes>
-        <Route path = "/" element = {<Login></Login>} />
+        <Route path = "/" element = {<Login setUser={setUserInfo}/>} />
+        <Route path = "/teams"/>
+        <Route path = "/register" element = {<Register/>} />
       </Routes>
     </Router>
     </>
