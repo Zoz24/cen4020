@@ -87,10 +87,6 @@ const Login = (props) => {
                   onChange={e => setPassword(e.target.value)}
                   autoComplete="current-password"
                 />
-                <FormControlLabel
-                  control={<Checkbox value="remember" color="primary" />}
-                  label="Remember me"
-                />
                 <Button
                   type="submit"
                   fullWidth

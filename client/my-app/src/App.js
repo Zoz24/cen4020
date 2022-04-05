@@ -7,6 +7,7 @@ import
 } from "react-router-dom"
 import Login from "./components/Login"
 import Register from "./components/Register"
+import Teams from "./components/Teams"
 import './App.css';
 
 function App() 
@@ -20,7 +21,7 @@ function App()
     <Router>
       <Routes>
         <Route path = "/" element = {<Login setUser={setUserInfo}/>} />
-        <Route path = "/teams"/>
+        <Route path = "/teams" element = {<Teams></Teams>} />
         <Route path = "/register" element = {<Register/>} />
       </Routes>
     </Router>
