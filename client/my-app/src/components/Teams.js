@@ -14,6 +14,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import TeamInfo from './TeamInfo';
+import { useNavigate } from "react-router-dom";
 
 
 const teams = [
@@ -42,7 +44,7 @@ const teams = [
     {name: "San Diego Padres", img: "http://www.capsinfo.com/images/MLB_Team_Logos/SanDiego_Padres.png"},
     {name: "San Francisco Giants", img: "http://www.capsinfo.com/images/MLB_Team_Logos/SanFrancisco_Giants.png"},
     {name: "Seattle Mariners", img: "http://www.capsinfo.com/images/MLB_Team_Logos/Seattle_Mariners.png"},
-    {name: "St Louis Cardinals", img: "http://www.capsinfo.com/images/MLB_Team_Logos/StLouis_Cardinals.png"},
+    {name: "St. Louis Cardinals", img: "http://www.capsinfo.com/images/MLB_Team_Logos/StLouis_Cardinals.png"},
     {name: "Tampa Bay Rays", img: "http://www.capsinfo.com/images/MLB_Team_Logos/TampaBay_Rays.png"},
     {name: "Texas Rangers", img: "http://www.capsinfo.com/images/MLB_Team_Logos/Texas_Rangers.png"},
     {name: "Toronto Blue Jays", img: "http://www.capsinfo.com/images/MLB_Team_Logos/Toronto_Blue_Jays.png"},
@@ -51,8 +53,14 @@ const teams = [
 
 const theme = createTheme();
 
-export default function Teams() 
+export default function Teams({setTeamName}) 
 {
+  let navigate = useNavigate()
+  const handleClick = (teamName) => 
+  {
+    setTeamName(teamName)
+    navigate('/teaminfo')
+  }
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -95,7 +103,9 @@ export default function Teams()
                 <Card
                   sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
                 >
-                <Button>
+                <Button
+                  onClick={() => handleClick(team.name)}
+                >
                   <CardMedia
                     component="img"
                     sx={{
