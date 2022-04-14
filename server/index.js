@@ -45,7 +45,32 @@ app.post("/register", async (req, res) => {
       console.error(err.message);
     }
   });
-
+app.get("/getFavoriteTeam/:username", async (req, res) => 
+{
+  try
+  {
+    const {username} = req.params
+    const favoriteTeam = await pool.query("SELECT favoriteTeam FROM users WHERE username = $1", [username])
+    res.json(favoriteTeam.rows[0])
+  } 
+  catch(err)
+  {
+    console.error(err.message)
+  }
+})
+app.get("/getFavoritePlayer/:username", async (req, res) => 
+{
+  try
+  {
+    const {username} = req.params
+    const favoritePlayer = await pool.query("SELECT favoritePlayer FROM users WHERE username = $1", [username])
+    res.json(favoritePlayer.rows[0])
+  } 
+  catch(err)
+  {
+    console.error(err.message)
+  }
+})
 app.put("/setFavoritePlayer", async (req, res) => {
   try{
     const {username, favoritePlayer} = req.body

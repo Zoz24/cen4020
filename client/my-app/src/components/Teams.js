@@ -53,12 +53,14 @@ const teams = [
 
 const theme = createTheme();
 
-export default function Teams({setTeamName}) 
+export default function Teams({setTeamName, setTeamLogo}) 
 {
   let navigate = useNavigate()
-  const handleClick = (teamName) => 
+
+  const handleClick = (teamName, teamLogo) => 
   {
     setTeamName(teamName)
+    setTeamLogo(teamLogo)
     navigate('/teaminfo')
   }
   return (
@@ -104,7 +106,7 @@ export default function Teams({setTeamName})
                   sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
                 >
                 <Button
-                  onClick={() => handleClick(team.name)}
+                  onClick={() => handleClick(team.name, team.img)}
                 >
                   <CardMedia
                     component="img"
