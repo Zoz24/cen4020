@@ -54,7 +54,7 @@ const TeamInfo = (props) =>
     ]
     const currentSeason = new Date().getFullYear()
     const [teamRoster, setTeamRoster] = useState([])
-    const [desiredSeason, setDesiredSeason] = useState(currentSeason - 1)
+    const [desiredSeason, setDesiredSeason] = useState(currentSeason)
     
 
     useEffect(() => {

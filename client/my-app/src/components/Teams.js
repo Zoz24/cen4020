@@ -56,6 +56,7 @@ const theme = createTheme();
 export default function Teams({setTeamName, setTeamLogo}) 
 {
   let navigate = useNavigate()
+
   const handleClick = (teamName, teamLogo) => 
   {
     setTeamName(teamName)
