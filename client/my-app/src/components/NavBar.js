@@ -9,9 +9,9 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 export default function ButtonAppBar() {
   const Logoff = async e => {
-        e.preventDefault();
-        window.localStorage.clear();
-        window.location.href = "/";
+        e.preventDefault()
+        window.localStorage.clear()
+        window.location.href = "/"
     }
   return (
     <Box sx={{ flexGrow: 1 }}>
