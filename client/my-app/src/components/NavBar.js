@@ -8,6 +8,11 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 
 export default function ButtonAppBar() {
+  const Logoff = async e => {
+        e.preventDefault();
+        window.localStorage.clear();
+        window.location.href = "/";
+    }
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -24,7 +29,7 @@ export default function ButtonAppBar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           Sportsball Statistics LLC
           </Typography>
-          <Button color="inherit">Log Off</Button>
+          <Button color="inherit" onClick={Logoff}>Log Off</Button>
         </Toolbar>
       </AppBar>
     </Box>
