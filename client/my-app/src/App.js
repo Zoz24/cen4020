@@ -11,6 +11,7 @@ import Teams from "./components/Teams"
 import TeamInfo from "./components/TeamInfo"
 import './App.css';
 import Axios from "axios"
+import Navbar from "./components/NavBar";
 
 function App() 
 {
@@ -45,6 +46,7 @@ function App()
   
   return (
     <>
+    <Navbar/>
     <Router>
       <Routes>
         <Route path = "/" element = {<Login setUser={setUserInfo}/>} />
