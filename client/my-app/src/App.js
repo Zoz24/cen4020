@@ -13,6 +13,7 @@ import PlayerInfo from "./components/PlayerInfo"
 import './App.css';
 import Axios from "axios"
 import Navbar from "./components/NavBar";
+import UserInfo from "./components/UserInfo"
 
 function App() 
 {
@@ -68,6 +69,7 @@ function App()
                                                 playerName = {playerName}
                                                 playerID = {playerID}  
                                                 playerPos = {playerPos}/> } />
+        <Route path = "/userinfo" element = {<UserInfo/>}/>
       </Routes>
     </Router>
     </>
