@@ -36,7 +36,10 @@ const Login = (props) => {
         .then((response) => {
             console.log(response);
             if (response.data.message)
-                setInvalidLogin(response.data.message)             
+            {
+                setInvalidLogin(response.data.message)
+                alert("Wrong username or password")
+            }
             else
             {
                 setInvalidLogin('');
