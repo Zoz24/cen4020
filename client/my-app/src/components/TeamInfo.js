@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {DataGrid} from '@mui/x-data-grid'
 import Axios from "axios";
 import Box from '@mui/material/Box';
@@ -7,14 +8,13 @@ import { Button } from "@mui/material";
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
-
 const TeamInfo = (props) =>
 {
     const columns = [
         {
             field: "name_display_first_last",
             headerName: 'Full Name',
-            width: 300
+            width: 300            
         },
         {
            field: "bats",
@@ -55,8 +55,8 @@ const TeamInfo = (props) =>
     const currentSeason = new Date().getFullYear()
     const [teamRoster, setTeamRoster] = useState([])
     const [desiredSeason, setDesiredSeason] = useState(currentSeason)
+    let navigate = useNavigate()
     
-
     useEffect(() => {
         getTeamRoster()       
     }, [desiredSeason])
@@ -90,6 +90,15 @@ const TeamInfo = (props) =>
         })
     }
 
+    const handleRowClick = (playerName, playerID, position) =>
+    {
+        console.log(position)
+        props.setPlayerName(playerName)
+        props.setPlayerID(playerID)
+        props.setPlayerPos(position)
+        navigate("/playerinfo")
+    }
+
     // This is just to have the fields match for the datagrid above since the properties returned by this api call are slightly different.
     const formatData = (teams) =>
     {
@@ -113,7 +122,6 @@ const TeamInfo = (props) =>
     async function getTeamRoster()
     {
         let teams = await getTeams()
-        console.log(teams)
         let teamID = getTeamID(teams, props.teamName)
 
         // Gets all players on a team for a specific season (ex. desiredSeason = 2021, currentSeason = 2022)
@@ -151,11 +159,10 @@ const TeamInfo = (props) =>
         marginTop: 8,
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center',
-        width: 2000,
+        alignItems: 'center',      
         justifyContent: 'center'
     }}>  
-    <div style={{ height: 400, width: '50%', textAlign: "center"}}>
+    <div style={{ height: 400, width: '55%', textAlign: "center"}}>
         <h1>{props.teamName} Roster {desiredSeason}</h1>
         <Box
             component="img"
@@ -197,15 +204,17 @@ const TeamInfo = (props) =>
                 >Season {desiredSeason + 1}</Button>
             </Grid>            
         </Grid>
-        
         <DataGrid
             sx={{marginTop: 2}}
             rows = {teamRoster}
             columns = {columns}
             getRowId = {(row) => row.player_id}
-            autoHeight    
+            autoHeight
+            onRowClick={(rowData) => handleRowClick(rowData.row.name_display_first_last, rowData.row.player_id, rowData.row.position_txt)} 
             />
+    
         </div>
+        
     </Box>
     </>
     //</div>
