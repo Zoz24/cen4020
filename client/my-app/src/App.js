@@ -9,6 +9,7 @@ import Login from "./components/Login"
 import Register from "./components/Register"
 import Teams from "./components/Teams"
 import TeamInfo from "./components/TeamInfo"
+import PlayerInfo from "./components/PlayerInfo"
 import './App.css';
 import Axios from "axios"
 import Navbar from "./components/NavBar";
@@ -21,6 +22,9 @@ function App()
   })
   const [teamName, setTeamName] = useState('')
   const [teamLogo, setTeamLogo] = useState('')
+  const [playerName, setPlayerName] = useState('')
+  const [playerID, setPlayerID] = useState('')
+  const [playerPos, setPlayerPos] = useState('')
   const [favoriteTeam, setFavoriteTeam] = useState('')
   const [favoritePlayer, setFavoritePlayer] = useState('')
 
@@ -54,9 +58,16 @@ function App()
         <Route path = "/register" element = {<Register/>} />
         <Route path = "/teaminfo" element = {<TeamInfo 
                                               teamName = {teamName} 
-                                              teamLogo = {teamLogo} 
+                                              teamLogo = {teamLogo}
+                                              setPlayerName = {setPlayerName}
+                                              setPlayerID = {setPlayerID}
+                                              setPlayerPos = {setPlayerPos} 
                                               favoriteTeam = {favoriteTeam} 
                                               setFavoriteTeam = {setFavoriteTeam}/>} />
+        <Route path = "/playerinfo" element = {<PlayerInfo 
+                                                playerName = {playerName}
+                                                playerID = {playerID}  
+                                                playerPos = {playerPos}/> } />
       </Routes>
     </Router>
     </>
