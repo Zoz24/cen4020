@@ -5,7 +5,7 @@ Initial Setup:
 3.  setup a user and password (can use the postgres super user)
 4.  Create a database called cen4020
 5.  use "/c cen4020" to connect to the database
-6.  Enter the following command:
+6.  Enter the following command (still in postgres):
 
 ```
 CREATE TABLE users
@@ -21,8 +21,8 @@ CREATE TABLE users
 ```
 
 7.   Close postgres
-8.  Open terminal
-9.  git clone the repository
+8.   Open terminal
+9.   git clone the repository
 10.  Go to the server folder
 11.  Create a file named db.js
 12.  Copy paste the following code into db.js
@@ -42,7 +42,7 @@ module.exports = pool;
 13.  Replace the postgres user/password with your own in the above copy pasted code
 14.  Save db.js then close the file.
 15.  Back in the terminal, still in the server folder, run "npm install"
-16.  Then, run "node index.js"
+16.  Then, run "node index.js", still in the server folder
 17.  ****Keep this terminal open, open a second terminal****
 18.  Go to the client/my-app folder
 19.  Run "npm install"
