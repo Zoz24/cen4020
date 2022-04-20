@@ -19,7 +19,7 @@ function App()
 {
   const [userInfo, setUserInfo] = useState({
     isLoggedIn: false,
-    username: "jeff"
+    username: null
   })
   const [teamName, setTeamName] = useState('')
   const [teamLogo, setTeamLogo] = useState('')
@@ -31,7 +31,7 @@ function App()
 
   useEffect(() => {
     getFavorites()
-  }, [])
+  }, [favoriteTeam, favoritePlayer])
   const getFavorites = async () =>{
     getFavoriteTeam()
     getFavoritePlayer()
@@ -40,32 +40,38 @@ function App()
   const getFavoriteTeam = async () =>{
     const response = await Axios.get(`http://localhost:5000/getFavoriteTeam/${userInfo.username}`)
     const favoriteTeam = response.data.favoriteteam
+    console.log("favorite team: " + favoriteTeam)
     setFavoriteTeam(favoriteTeam)
   }
 
   const getFavoritePlayer = async () =>{
     const response = await Axios.get(`http://localhost:5000/getFavoritePlayer/${userInfo.username}`)
     const favoritePlayer = response.data.favoriteplayer
+    console.log("favorite player: " + favoritePlayer)
     setFavoritePlayer(favoritePlayer)
   }
   
   return (
     <>
-    <Navbar/>
+    {/* this makes me lose state <Navbar/> */}
     <Router>
       <Routes>
         <Route path = "/" element = {<Login setUser={setUserInfo}/>} />
-        <Route path = "/teams" element = {<Teams setTeamName={setTeamName} setTeamLogo={setTeamLogo}/>} />
+        <Route path = "/teams" element = {<Teams setTeamName={setTeamName} setTeamLogo={setTeamLogo} />} />
         <Route path = "/register" element = {<Register/>} />
-        <Route path = "/teaminfo" element = {<TeamInfo 
+        <Route path = "/teaminfo" element = {<TeamInfo
+                                              username = {userInfo.username} 
                                               teamName = {teamName} 
                                               teamLogo = {teamLogo}
                                               setPlayerName = {setPlayerName}
                                               setPlayerID = {setPlayerID}
-                                              setPlayerPos = {setPlayerPos} 
-                                              favoriteTeam = {favoriteTeam} 
-                                              setFavoriteTeam = {setFavoriteTeam}/>} />
-        <Route path = "/playerinfo" element = {<PlayerInfo 
+                                              setPlayerPos = {setPlayerPos}
+                                              setFavoriteTeam = {setFavoriteTeam} 
+                                              favoriteTeam = {favoriteTeam} />} />
+        <Route path = "/playerinfo" element = {<PlayerInfo
+                                                username = {userInfo.username}
+                                                favoritePlayer = {favoritePlayer} 
+                                                setFavoritePlayer = {setFavoritePlayer}
                                                 playerName = {playerName}
                                                 playerID = {playerID}  
                                                 playerPos = {playerPos}/> } />
