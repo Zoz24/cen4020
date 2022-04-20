@@ -22,6 +22,7 @@ CREATE TABLE users
 10.  Go to the server folder
 11.  Create a file named db.js
 12.  Copy paste the following code into db.js
+
 const Pool = require("pg").Pool;
 
 const pool = new Pool({
@@ -33,6 +34,7 @@ const pool = new Pool({
 });
 
 module.exports = pool;
+
 13.  Replace the postgres user/password with your own in the above copy pasted code
 14.  Save db.js then close the file.
 15.  Back in the terminal, still in the server folder, run "npm install"
