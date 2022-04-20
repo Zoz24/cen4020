@@ -5,11 +5,11 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import Menu from "@mui/material/Menu";
 import Tooltip from "@mui/material/Tooltip";
+import HomeIcon from '@mui/icons-material/Home';
 
 export default function ButtonAppBar() {
   const [auth, setAuth] = React.useState(true);
@@ -22,6 +22,10 @@ export default function ButtonAppBar() {
   const GoToUser = async (e) => {
     e.preventDefault();
     window.location.href = "/UserInfo"
+  }
+  const GoToTeams = async (e) => {
+    e.preventDefault();
+    window.location.href = "/teams"
   }
   const handleChange = (event) => {
     setAuth(event.target.checked);
@@ -37,9 +41,16 @@ export default function ButtonAppBar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <Button variant = "text">
-            Hello
-          </Button>
+        <IconButton
+            onClick={GoToTeams}
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+          >
+            <HomeIcon />
+          </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Sportsball Statistics LLC
           </Typography>
