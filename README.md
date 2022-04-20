@@ -7,7 +7,7 @@ Initial Setup:
 5.  use "/c cen4020" to connect to the database
 6.  Enter the following command:
 
-CREATE TABLE users 
+CREATE TABLE users
 (
     username TEXT PRIMARY KEY, 
     password TEXT, 
