@@ -27,15 +27,15 @@ CREATE TABLE users
 11.  Create a file named db.js
 12.  Copy paste the following code into db.js
 ```
-    const Pool = require("pg").Pool;
-    
-    const pool = new Pool({
-      user: "replaceWithYourPostgresUser", 
-      password: "replaceWithYourPostgresPassword", 
-      host: "localhost", 
-      port: 5432, 
-      database: "cen4020
-    });
+const Pool = require("pg").Pool;
+
+const pool = new Pool({
+  user: "replaceWithYourPostgresUser", 
+  password: "replaceWithYourPostgresPassword", 
+  host: "localhost", 
+  port: 5432, 
+  database: "cen4020
+});
 
 module.exports = pool;
 ```
