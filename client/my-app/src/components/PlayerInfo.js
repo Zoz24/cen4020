@@ -20,7 +20,7 @@ const PlayerInfo = (props) =>
         {
            field: "team_abbrev",
            headerName: "Team",
-           width: 50,
+           width: 75,
         },
         {
             field: "league",
@@ -158,7 +158,7 @@ const PlayerInfo = (props) =>
         {
            field: "team_abbrev",
            headerName: "Team",
-           width: 50,
+           width: 75,
         },
         {
             field: "league",
