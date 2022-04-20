@@ -7,8 +7,9 @@ Initial Setup:
 5.  use "/c cen4020" to connect to the database
 6.  Enter the following command:
 
+```
 CREATE TABLE users
-(
+( 
     username TEXT PRIMARY KEY, 
     password TEXT, 
     fname TEXT, 
@@ -17,25 +18,27 @@ CREATE TABLE users
     favoriteTeam TEXT, 
     favoritePlayer TEXT
 );
+```
+
 7.   Close postgres
 8.  Open terminal
 9.  git clone the repository
 10.  Go to the server folder
 11.  Create a file named db.js
 12.  Copy paste the following code into db.js
-
-const Pool = require("pg").Pool;
-
-const pool = new Pool({
-  user: "replaceWithYourPostgresUser",
-  password: "replaceWithYourPostgresPassword",
-  host: "localhost",
-  port: 5432,
-  database: "cen4020
-});
+```
+    const Pool = require("pg").Pool;
+    
+    const pool = new Pool({
+      user: "replaceWithYourPostgresUser", 
+      password: "replaceWithYourPostgresPassword", 
+      host: "localhost", 
+      port: 5432, 
+      database: "cen4020
+    });
 
 module.exports = pool;
-
+```
 13.  Replace the postgres user/password with your own in the above copy pasted code
 14.  Save db.js then close the file.
 15.  Back in the terminal, still in the server folder, run "npm install"
