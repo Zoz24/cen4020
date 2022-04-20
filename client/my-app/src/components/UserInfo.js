@@ -1,46 +1,63 @@
 import Axios from "axios";
 import React, { Fragment, useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom'
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
-const theme = createTheme();
 
 const UserInfo = () =>{
 
-  
+const [firstname, setfirstname] = useState('')
+const [lastname, setlastname] = useState('')
+const [bday, setbday] = useState('')
+const [favteam, setfavteam] = useState('')
+const [favplayer, setfavplayer] = useState('')
 
-    return(
-    <Fragment>
+
+
+let uname = localStorage.getItem('USERNAME');
+
+Axios.get(`http://localhost:5000/userinfo/${uname}`,
+{
+}
+)
+.then((response) => {
+    setfirstname(response.data.username)
+    setlastname(response.data.lname)
+    setbday(response.data.dob.slice(0,10))
+    setfavteam(response.data.favoriteteam)
+    setfavplayer(response.data.favoriteplayer)
+}) 
+
+
+
+
+return(
+  <Fragment>
     <table align = "center">
-  <tr>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>Username</th>
-    <th>Date of Birth</th>
-    <th>Favorite Team</th>
-    <th>Favorite Player</th>
-  </tr>
-  <tr>
-    <td>Jesus</td>
-    <td>Christ</td>
-    <td>jChrist</td>
-    <td>0000-12-25</td>
-    <td>Bethlehem Badgers</td>
-    <td>Judas Iscariot</td>
-  </tr>
-</table></Fragment>)
+    <tr>
+        <th>First Name</th>
+        <td>{firstname}</td>
+    </tr>
+    <tr>
+        <th>Last Name</th>
+        <td>{lastname}</td>
+    </tr>
+    <tr>
+        <th>Username</th>
+        <td>{uname}</td>
+    </tr>
+    <tr>
+        <th>Birthday</th>
+        <td>{bday}</td>
+    </tr>
+    <tr>
+        <th>Favorite Team</th>
+        <td>{favteam}</td>
+    </tr>
+    <tr>
+        <th>Favorite Player</th>
+        <td>{favplayer}</td>
+    </tr>
+</table></Fragment>
+)
 }
 
 export default UserInfo;

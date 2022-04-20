@@ -35,6 +35,7 @@ const Login = (props) => {
         )
         .then((response) => {
             console.log(response);
+            localStorage.setItem('USERNAME', username);
             if (response.data.message)
             {
                 setInvalidLogin(response.data.message)

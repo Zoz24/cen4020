@@ -62,9 +62,63 @@ app.get("/getFavoritePlayer/:username", async (req, res) =>
 {
   try
   {
+    console.log()
     const {username} = req.params
     const favoritePlayer = await pool.query("SELECT favoritePlayer FROM users WHERE username = $1", [username])
     res.json(favoritePlayer.rows[0])
+  } 
+  catch(err)
+  {
+    console.error(err.message)
+  }
+})
+app.get("/getFname/:username", async (req, res) => 
+{
+  try
+  {
+    console.log()
+    const {username} = req.params
+    const fname = await pool.query("SELECT fname FROM users WHERE username = $1", [username])
+    res.json(fname.rows[0])
+  } 
+  catch(err)
+  {
+    console.error(err.message)
+  }
+})
+app.get("/getLname/:username", async (req, res) => 
+{
+  try
+  {
+    const {username} = req.params
+    const lname = await pool.query("SELECT lname FROM users WHERE username = $1", [username])
+    res.json(lname.rows[0])
+  } 
+  catch(err)
+  {
+    console.error(err.message)
+  }
+})
+app.get("/getDOB/:username", async (req, res) => 
+{
+  try
+  {
+    const {username} = req.params
+    const bday = await pool.query("SELECT DOB FROM users WHERE username = $1", [username])
+    res.json(bday.rows[0])
+  } 
+  catch(err)
+  {
+    console.error(err.message)
+  }
+})
+app.get("/userinfo/:username", async (req, res) => 
+{
+  try
+  {
+    const {username} = req.params
+    const userinfo = await pool.query("SELECT * FROM users WHERE username = $1", [username])
+    res.json(userinfo.rows[0])
   } 
   catch(err)
   {
