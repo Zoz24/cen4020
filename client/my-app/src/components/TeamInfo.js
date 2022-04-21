@@ -99,6 +99,33 @@ const TeamInfo = (props) =>
         navigate("/playerinfo")
     }
 
+    const handleToggle = async (isChecked) =>
+    {
+        const url = "http://localhost:5000/setFavoriteTeam"
+        if (isChecked)
+        {            
+            const response = await Axios.put(url, 
+                {
+                    username: props.username,
+                    favoriteTeam: props.teamName
+                }
+                )
+            props.setFavoriteTeam(props.teamName)
+            console.log(response)
+        }
+        else
+        {
+            const response = await Axios.put(url, 
+                {
+                    username: props.username,
+                    favoriteTeam: null
+                }
+                )
+            props.setFavoriteTeam(null)
+            console.log("user now has no favorite player")
+        }
+    }
+
     // This is just to have the fields match for the datagrid above since the properties returned by this api call are slightly different.
     const formatData = (teams) =>
     {
@@ -176,8 +203,11 @@ const TeamInfo = (props) =>
         >
             <Grid item>
                 <FormControlLabel 
-                    control={<Checkbox/>} 
+                    control={<Checkbox
+                                checked={props.teamName === props.favoriteTeam ? true : false}
+                                onChange = {(e) => handleToggle(e.target.checked)}/>} 
                     label="Select as favorite team"
+
                     />
             </Grid>
         </Grid>   
