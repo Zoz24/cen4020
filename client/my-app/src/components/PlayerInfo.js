@@ -334,9 +334,8 @@ const PlayerInfo = (props) =>
         
             <h1>{props.playerName} Stats {desiredSeason}</h1>
             <Box
-                component="img"
-                sx={{height: 200, width: 200}}
-                src= {props.teamLogo}
+                component="img"                
+                src= {`https://img.mlbstatic.com/mlb-photos/image/upload/d_people:generic:headshot:67:current.png/w_213,q_auto:best/v1/people/${props.playerID}/headshot/67/current`} 
             />
             <Grid item sx = {{marginTop: 2}}>
                 <FormControlLabel 
