@@ -91,8 +91,8 @@ const UserInfo = () => {
                             <Typography variant = "h6" component="div">{firstname}</Typography>
                             <Typography variant = "h6" component="div">{lastname}</Typography>
                             <Typography variant = "h6" component="div">{bday}</Typography> 
-                            <Typography variant = "h6" component="div">{favteam} </Typography> 
-                            <Typography variant = "h6" component="div">{favplayer}</Typography>    
+                            <Typography variant = "h6" component="div">{favteam == null ? "N/A" : favteam} </Typography> 
+                            <Typography variant = "h6" component="div">{favplayer == null ? "N/A" : favplayer}</Typography>    
                         </Grid>
                     </Grid>
                 </Box>                
