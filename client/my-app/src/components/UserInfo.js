@@ -19,7 +19,7 @@ Axios.get(`http://localhost:5000/userinfo/${uname}`,
 }
 )
 .then((response) => {
-    setfirstname(response.data.username)
+    setfirstname(response.data.fname)
     setlastname(response.data.lname)
     setbday(response.data.dob.slice(0,10))
     setfavteam(response.data.favoriteteam)
