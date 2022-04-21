@@ -7,6 +7,7 @@ import {DataGrid} from '@mui/x-data-grid'
 import Button from "@mui/material/Button"
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { FormControlLabel, Checkbox } from "@mui/material";
 
 // props will have the player name, and the player id
 const PlayerInfo = (props) => 
@@ -20,7 +21,7 @@ const PlayerInfo = (props) =>
         {
            field: "team_abbrev",
            headerName: "Team",
-           width: 50,
+           width: 75,
         },
         {
             field: "league",
@@ -158,7 +159,7 @@ const PlayerInfo = (props) =>
         {
            field: "team_abbrev",
            headerName: "Team",
-           width: 50,
+           width: 75,
         },
         {
             field: "league",
@@ -262,6 +263,33 @@ const PlayerInfo = (props) =>
         setStats(arr)
     }
 
+    const handleToggle = async (isChecked) =>
+    {
+        const url = "http://localhost:5000/setFavoritePlayer"
+        if (isChecked)
+        {            
+            const response = await Axios.put(url, 
+                {
+                    username: props.username,
+                    favoritePlayer: props.playerName
+                }
+                )
+            props.setFavoritePlayer(props.playerName)
+            console.log(response)
+        }
+        else
+        {
+            const response = await Axios.put(url, 
+                {
+                    username: props.username,
+                    favoritePlayer: null
+                }
+                )
+            props.setFavoritePlayer(null)
+            console.log("user now has no favorite player")
+        }
+    }
+
     const getPlayerStats = async (playerPosition) =>
     {       
         if (playerPosition === 'P')
@@ -306,10 +334,18 @@ const PlayerInfo = (props) =>
         
             <h1>{props.playerName} Stats {desiredSeason}</h1>
             <Box
-                component="img"
-                sx={{height: 200, width: 200}}
-                src= {props.teamLogo}
+                component="img"                
+                src= {`https://img.mlbstatic.com/mlb-photos/image/upload/d_people:generic:headshot:67:current.png/w_213,q_auto:best/v1/people/${props.playerID}/headshot/67/current`} 
             />
+            <Grid item sx = {{marginTop: 2}}>
+                <FormControlLabel 
+                    control={<Checkbox
+                                checked={props.playerName === props.favoritePlayer ? true : false}
+                                onChange = {(e) => {handleToggle(e.target.checked)}}/>} 
+                    label="Select as favorite player"
+
+                    />
+            </Grid>
             <Grid
                 container spacing = {2}
                 sx={{marginTop: 2}}

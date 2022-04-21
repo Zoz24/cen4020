@@ -14,22 +14,24 @@ import HomeIcon from '@mui/icons-material/Home';
 import logo from './logo.svg';
 import { height, width } from "@mui/system";
 import ProfileIcon from './BaseballPlayer.jpg';
+import { useNavigate } from "react-router";
 
-export default function ButtonAppBar() {
+export default function ButtonAppBar(props) {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const Logoff = async (e) => {
-    e.preventDefault();
+  let navigate = useNavigate()
+  
+  const Logoff = () => {
+    
     window.localStorage.clear();
-    window.location.href = "/";
+    props.setUserInfo({username: null, isLoggedIn: false})
+    navigate('/')
   };
-  const GoToUser = async (e) => {
-    e.preventDefault();
-    window.location.href = "/UserInfo"
+  const GoToUser = () => {
+    navigate('/userinfo')
   }
-  const GoToTeams = async (e) => {
-    e.preventDefault();
-    window.location.href = "/teams"
+  const GoToTeams = () => {
+    navigate('/teams')
   }
   const handleChange = (event) => {
     setAuth(event.target.checked);
