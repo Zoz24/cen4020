@@ -51,34 +51,35 @@ function App()
     setFavoritePlayer(favoritePlayer)
   }
   
-  return (
-    <>
-    {/* this makes me lose state <Navbar/> */}
+  return (  
     <Router>
-      <Routes>
-        <Route path = "/" element = {<Login setUser={setUserInfo}/>} />
-        <Route path = "/teams" element = {<Teams setTeamName={setTeamName} setTeamLogo={setTeamLogo} />} />
-        <Route path = "/register" element = {<Register/>} />
-        <Route path = "/teaminfo" element = {<TeamInfo
-                                              username = {userInfo.username} 
-                                              teamName = {teamName} 
-                                              teamLogo = {teamLogo}
-                                              setPlayerName = {setPlayerName}
-                                              setPlayerID = {setPlayerID}
-                                              setPlayerPos = {setPlayerPos}
-                                              setFavoriteTeam = {setFavoriteTeam} 
-                                              favoriteTeam = {favoriteTeam} />} />
-        <Route path = "/playerinfo" element = {<PlayerInfo
-                                                username = {userInfo.username}
-                                                favoritePlayer = {favoritePlayer} 
-                                                setFavoritePlayer = {setFavoritePlayer}
-                                                playerName = {playerName}
-                                                playerID = {playerID}  
-                                                playerPos = {playerPos}/> } />
-        <Route path = "/userinfo" element = {<UserInfo/>}/>
-      </Routes>
+      <>
+      {userInfo.isLoggedIn && <Navbar setUserInfo = {setUserInfo}/>}
+        <Routes>
+          <Route path = "/" element = {<Login setUser={setUserInfo}/>} />
+          <Route path = "/teams" element = {<Teams setTeamName={setTeamName} setTeamLogo={setTeamLogo} />} />
+          <Route path = "/register" element = {<Register/>} />
+          <Route path = "/teaminfo" element = {<TeamInfo
+                                                username = {userInfo.username} 
+                                                teamName = {teamName} 
+                                                teamLogo = {teamLogo}
+                                                setPlayerName = {setPlayerName}
+                                                setPlayerID = {setPlayerID}
+                                                setPlayerPos = {setPlayerPos}
+                                                setFavoriteTeam = {setFavoriteTeam} 
+                                                favoriteTeam = {favoriteTeam} />} />
+          <Route path = "/playerinfo" element = {<PlayerInfo
+                                                  username = {userInfo.username}
+                                                  favoritePlayer = {favoritePlayer} 
+                                                  setFavoritePlayer = {setFavoritePlayer}
+                                                  playerName = {playerName}
+                                                  playerID = {playerID}  
+                                                  playerPos = {playerPos}/> } />
+          <Route path = "/userinfo" element = {<UserInfo/>}/>
+        </Routes>
+      </>
     </Router>
-    </>
+    
   )
 }
 
