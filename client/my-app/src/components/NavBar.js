@@ -9,7 +9,11 @@ import MenuItem from "@mui/material/MenuItem";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import Menu from "@mui/material/Menu";
 import Tooltip from "@mui/material/Tooltip";
+import Avatar from '@mui/material/Avatar';
 import HomeIcon from '@mui/icons-material/Home';
+import logo from './logo.svg';
+import { height, width } from "@mui/system";
+import ProfileIcon from './BaseballPlayer.jpg';
 import { useNavigate } from "react-router";
 
 export default function ButtonAppBar(props) {
@@ -43,6 +47,7 @@ export default function ButtonAppBar(props) {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
+          <Tooltip title = 'Home'>
         <IconButton
             onClick={GoToTeams}
             size="large"
@@ -53,9 +58,11 @@ export default function ButtonAppBar(props) {
           >
             <HomeIcon />
           </IconButton>
+          </Tooltip>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Sportsball Statistics LLC
           </Typography>
+         <Box sx={{ flexGrow: 1 }}> <img src={logo} style={{width: '20%', height: '20%'}} /></Box>
           <Tooltip title="Profile">
             <IconButton
               size="large"
@@ -65,11 +72,10 @@ export default function ButtonAppBar(props) {
               onClick={handleMenu}
               color="inherit"
             >
-              <AccountCircle />
+              <Avatar src={ProfileIcon} />
             </IconButton>
           </Tooltip>
           <Menu
-            id="menu-appbar"
             anchorEl={anchorEl}
             anchorOrigin={{
               vertical: "top",

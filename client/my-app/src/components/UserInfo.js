@@ -5,14 +5,11 @@ import { Card, Avatar, Box, Typography, Grid } from "@mui/material";
 import ProfileIcon from './batter.png'
 
 const UserInfo = () => {
-
     const [firstname, setfirstname] = useState('')
     const [lastname, setlastname] = useState('')
     const [bday, setbday] = useState('')
     const [favteam, setfavteam] = useState('')
     const [favplayer, setfavplayer] = useState('')
-
-
 
     let uname = localStorage.getItem('USERNAME');
 
@@ -98,8 +95,6 @@ const UserInfo = () => {
                 </Box>                
             </Card>
         </Box>
-
     )
 }
-
 export default UserInfo;
